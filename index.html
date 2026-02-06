@@ -6,9 +6,31 @@
     <title>Indika Surf Shop | Rentals & Board Repair in Midigama</title>
     <meta
       name="description"
-      content="Friendly local surfboard rentals + board repair in Midigama (Ahangama), Sri Lanka. Open daily 07:00–19:00. Call/WhatsApp +94 76 776 6172."
+      content="Midigama surf rental and surf repair. Surf shop open daily 07:00–19:00. Call/WhatsApp +94 76 776 6172. Where to repair surfboard in Midigama. Surfboard shaper Midigama (Ahangama). Cheap surf rental in Midigama (Ahangama) Sri lanka."
     />
     <meta name="theme-color" content="#0c4a4e" />
+    <!-- <link rel="canonical" href="https://example.com/page" /> -->
+
+    <meta property="og:type" content="website" />
+    <!-- <meta property="og:url" content="https://example.com/page" /> -->
+    <meta property="og:title" content="Indika surf repair and rent" />
+    <meta
+      property="og:description"
+      content="Best surf repair and rent in Midigama."
+    />
+    <!-- <meta property="og:image" content="https://example.com/02.jpg" /> -->
+
+    <!-- Optional but recommended -->
+    <meta property="og:site_name" content="Indika Surf Shop" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Indika surf repair and rent" />
+    <meta
+      name="twitter:description"
+      content="Best surf repair and rent in Midigama."
+    />
+    <!-- <meta name="twitter:image" content="https://example.com/02.jpg" /> -->
 
     <style>
       :root {
@@ -75,10 +97,12 @@
       }
 
       .topbar {
-        position: sticky;
+        position: fixed;
+        left: 0;
+        right: 0;
         top: 0;
-        z-index: 20;
-        background: rgba(251, 246, 234, 0.78);
+        z-index: 9999;
+        background: rgba(251, 246, 234, 0.88);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--line);
       }
@@ -628,6 +652,16 @@
         font-size: 12px;
         opacity: 0.9;
       }
+
+      /* Reviews: show only 3 on small screens, allow expanding */
+      @media (max-width: 900px) {
+        #reviews .split .review {
+          display: none;
+        }
+        #reviews .split .review:nth-child(-n + 3) {
+          display: block;
+        }
+      }
     </style>
   </head>
 
@@ -636,7 +670,10 @@
       <div class="wrap">
         <div class="brand">
           <div class="logo" title="Indika Surf Shop sign">
-            <img src="photos/indika_logo.png" alt="Indika Surf Shop logo sign" />
+            <img
+              src="photos/indika_logo.png"
+              alt="Indika Surf Shop logo sign"
+            />
           </div>
           <div>
             Indika Surf Shop
@@ -704,11 +741,11 @@
             </div>
 
             <div class="cta">
-              <a class="btn primary" href="tel:+94767766172"
+              <a class="btn primary phone-call" href="tel:+94767766172"
                 >Call +94 76 776 6172</a
               >
               <a
-                class="btn sun"
+                class="btn sun phone-whatsapp"
                 href="https://wa.me/94767766172"
                 target="_blank"
                 rel="noopener"
@@ -722,7 +759,8 @@
               <span class="chip" role="listitem">🛠️ Board repair</span>
               <span class="chip" role="listitem">🔁 Change boards anytime</span>
               <span class="chip" role="listitem"
-                >🕖 Open daily 07:00–19:00</span
+                >🕖 Open daily
+                <span class="workingHours">07:00–19:00</span></span
               >
             </div>
           </div>
@@ -730,12 +768,16 @@
           <aside class="card hero-side" aria-label="Quick info">
             <div class="row">
               <div class="label">Hours</div>
-              <div class="val">Every day • 07:00 – 19:00</div>
+              <div class="val">
+                Every day • <span class="workingHours">07:00 – 19:00</span>
+              </div>
             </div>
             <div class="row">
               <div class="label">Phone / WhatsApp</div>
               <div class="val">
-                <a href="tel:+94767766172">+94 76 776 6172</a>
+                <a class="phone-whatsapp" href="tel:+94767766172"
+                  >+94 76 776 6172</a
+                >
               </div>
             </div>
             <div class="row">
@@ -798,12 +840,12 @@
 
               <div class="price">
                 <div>Shortboard <small>(per day)</small></div>
-                <div>1500 LKR</div>
+                <div id="shortboardPrice">1500 LKR</div>
               </div>
 
               <div class="price">
                 <div>Longboard <small>(per day)</small></div>
-                <div>2100 LKR</div>
+                <div id="longboardPrice">2100 LKR</div>
               </div>
 
               <p class="note">
@@ -822,7 +864,7 @@
               </div>
               <div class="price">
                 <div>Open</div>
-                <div>07:00–19:00</div>
+                <div class="workingHours">07:00–19:00</div>
               </div>
               <p class="note">
                 Just send a message: short/long + number of days + when you’ll
@@ -925,18 +967,9 @@
               >
             </div>
           </div>
-
-          <!-- <div class="review">
-            <div class="stars">★★★★★</div>
-            <div class="quote">
-              Real Google review (link):
-              <a id="rev2" href="#" target="_blank" rel="noopener">Open</a>
-            </div>
-            <div class="who">Review #2</div>
-          </div> -->
         </div>
 
-        <div style="margin-top: 12px">
+        <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap">
           <a
             class="btn primary"
             id="gmListing"
@@ -1066,9 +1099,9 @@
             </div>
 
             <div class="cta" style="margin-top: 12px">
-              <a class="btn primary" href="tel:+94767766172">Call</a>
+              <a class="btn primary phone-call" href="tel:+94767766172">Call</a>
               <a
-                class="btn sun"
+                class="btn sun phone-whatsapp"
                 href="https://wa.me/94767766172"
                 target="_blank"
                 rel="noopener"
@@ -1080,7 +1113,9 @@
           <div class="card" style="padding: 16px">
             <div class="row">
               <div class="label">Hours</div>
-              <div class="val">Daily • 07:00 – 19:00</div>
+              <div class="val">
+                Daily • <span class="workingHours">07:00 – 19:00</span>
+              </div>
             </div>
             <div class="row">
               <div class="label">Address</div>
@@ -1126,7 +1161,70 @@
     </div>
 
     <script>
+      // Load settings from JSON
+      async function loadSettings() {
+        try {
+          const response = await fetch("settings.json");
+          const settings = await response.json();
+
+          // Update prices from settings
+          document.getElementById("shortboardPrice").textContent =
+            settings.price.shortboard + " LKR";
+          document.getElementById("longboardPrice").textContent =
+            settings.price.longboard + " LKR";
+
+          // Update working hours from settings
+          document.querySelectorAll(".workingHours").forEach((el) => {
+            el.textContent = settings.workingHours;
+          });
+
+          // Update phone numbers from settings
+          const phoneNumber = settings.phoneNumber;
+          const pnf = phoneNumber.replace(/\D/g, ""); // Remove non-digits
+          const phoneNumberDisplay = `+${pnf.slice(0, 2)} ${pnf.slice(2, 4)} ${pnf.slice(4, 7)} ${pnf.slice(7)}`;
+
+          // Update phone call links and text
+          document.querySelectorAll(".phone-call").forEach((el) => {
+            el.href = "tel:+" + pnf;
+            const callText = el.textContent.trim();
+            if (callText === "Call") {
+              el.textContent = "Call";
+            } else {
+              el.textContent = "Call " + phoneNumberDisplay;
+            }
+          });
+
+          // Update WhatsApp links (without + for wa.me)
+          document.querySelectorAll(".phone-whatsapp").forEach((el) => {
+            el.href = "https://wa.me/" + pnf;
+          });
+
+          // Update phone display text
+          document.querySelectorAll(".phone-link").forEach((el) => {
+            el.href = "tel:+" + pnf;
+            el.textContent = phoneNumberDisplay;
+          });
+        } catch (error) {
+          console.error("Error loading settings:", error);
+        }
+      }
+      loadSettings();
+
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Keep page content visible under the fixed header by adding top padding
+      (function adjustTopbarSpacing() {
+        const topbar = document.querySelector(".topbar");
+        function setPadding() {
+          if (!topbar) return;
+          const h = topbar.offsetHeight;
+          document.body.style.paddingTop = h + "px";
+        }
+        // run now and on resize to handle mobile/desktop changes
+        setPadding();
+        window.addEventListener("resize", setPadding);
+        window.addEventListener("load", setPadding);
+      })();
 
       // ✅ Use the exact pin link you provided:
       const mapsPin = "https://maps.app.goo.gl/HowQZWpaM7kLsduq6?g_st=ic";
